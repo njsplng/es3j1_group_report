@@ -3,15 +3,16 @@
 \usepackage{graphicx}
 \usepackage{amssymb}
 \usepackage{microtype}
-\usepackage{wrapfig}
+\usepackage{enumitem}
 \usepackage{amsmath}
+\usepackage{index}
+\usepackage{enumitem}
 \usepackage{indentfirst}
 \usepackage{setspace}
 \usepackage[format=plain, font=it]{caption}
+\usepackage{makecell}
 \usepackage{todonotes}
 \usepackage[hidelinks]{hyperref}
-\usepackage{lipsum}
-
 \geometry{a4paper, margin=2.5cm}
 \singlespacing
 \title{ES3J1 Group 3 Report}
@@ -19,12 +20,17 @@
 \date{\today}
 
 \begin{document}
+\setlength{\abovecaptionskip}{5pt plus 3pt minus 2pt}
+\setlist{topsep=0.5em, itemsep=0em}
+\setlength{\parindent}{0.5em}
+\setlength{\belowcaptionskip}{-8pt}
+\setlength{\belowdisplayskip}{8pt}
 \pagenumbering{arabic}
 \maketitle
 
 \section*{Question 1}
 \par The output produced by the motor is not smooth, so to obtain its model that can be analysed using control system theory, a filter needs to be designed.
-\\\par The filter (and thus, the model) tuning was done according to the brief. The process followed the steps outlined below:
+\par The filter (and thus, the model) tuning was done according to the brief. The process followed the steps outlined below:
 \begin{enumerate}
     \item The filter coefficient was set to the simplest low-pass transfer function $\frac{1}{0.1s+1}$ to start smoothing the motor output, obtained by applying the step input. An example filter performance is shown in \textit{Figure \ref{fig:q1-filter}}.
           \begin{figure}[h!]
@@ -40,7 +46,7 @@
     \item The obtained transfer function was scaled by dividing both the numerator and the denominator by the step time ($T_s = 0.1$).
     \item The obtained transfer function was plotted against the unfiltered motor output to verify the model accuracy. If proven significantly inaccurate, the design process was repeated until a fitting filter that produced a smooth transfer function was obtained.
 \end{enumerate}
-\par The resulting transfer function's step response is shown in \textit{Figure \ref{fig:q1-graph}} (titled as "Computed (SIT)"). \\\:
+\par The resulting transfer function's step response is shown in \textit{Figure \ref{fig:q1-graph}} (titled as "Computed (SIT)").
 \par An alternative method for tuning the transfer function was also explored, as the steady state value of the produced function did not exactly match the motor output on the graph. The new tuning approach was found in \cite{umichControlTutorials} and was executed in the following steps:
 \begin{enumerate}
     \item Steps 1-3 were repeated from the previous method: a simple low-pass filter was set up, the motor circuit was assembled and the motor response to a step input was saved to the workspace.
@@ -69,8 +75,8 @@
     \item Overall error ($t > 0$): the total MSE for the SIT-calculated transfer function was $\epsilon_{T-c}=3.94\times10^{3}$ while the overall MSE for the graphically-calculated transfer function was $\epsilon_{T-g}=1.66\times10^{3}$. Overall, the total MSE was 237\% larger for the SIT-calculated transfer function than for the graphically-generated function.
 \end{itemize}
 \par Having evaluated the errors, further tasks were performed using the graphically-generated transfer function, as it outperformed the SIT-generated function on every timeframe and better fit the specifications.
-\par Upon observation of the motor function, the motor had a 0.1 second delay present, thus the transfer function should be multiplied by $e^{-0.1s}$ to account for the delay.
-\par The final design allowed for the produced output to be a smooth 1st order transfer function response, which enabled further analysis and tuning of the system in the subsequent tasks.
+\par Upon observation of the motor function, the motor had a 0.1 second delay, thus the transfer function needed to be multiplied by $e^{-0.1s}$ to account for this delay.
+\par The final design allowed for the produced output to be a smooth 1st order response, which enabled further analysis and tuning of the system in the subsequent tasks.
 \par The open-loop Simulink model used to obtained the results discussed in this section is shown in \textit{Figure \ref{fig:q1-model}}.\\
 \begin{figure}[h!]
     \centering
@@ -79,15 +85,17 @@
     \label{fig:q1-model}
 \end{figure}
 \section*{Question 2}
-\par Using the transfer function obtained from graphical analysis we began closed loop analysis to ascertain the PI values required for the controller. We chose to use the Ziegler-Nichols Method. An initial PI system was created with $K_p$ and $K_i$ set to zero. $K_p$ was then slowly increased in increments of 0.001 until consistent oscillations were present. At $K_p = 0.016$ oscillations, shown in \textit{Figure \ref{fig:q2-oscillatory}}, occured.
+\par Using the transfer function obtained in Question 1, closed-loop analysis of the system was used to obtain the required constants for proportional-integral (PI) control. The Ziegler-Nichols method was chosen due to its ease of implementation.
+\par An initial PI system was created with $K_p$ and $K_i$ both set to zero. $K_p$ was slowly increased in increments of 0.001, until consistent oscillations were produced in response to a step input. At $K_p = 0.016$, constant oscillations occurred. The system response using the oscillatory $K_p$ is shown in \textit{Figure \ref{fig:q2-oscillatory}}.
+\newpage
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.6\textwidth]{q2-g1.png}
-    \caption{The oscillatory graph used in the Ziegler-Nichels tuning}
+    \caption{The oscillatory graph used in the Ziegler-Nichols tuning}
     \label{fig:q2-oscillatory}
 \end{figure}
-\par The peak to peak time was measured to obtain the ultimate time period $P_u = 0.407$s giving an ultimate gain of $K_u = 0.016$.
-\par The Ziegler Nicholas tuning equations were applied to obtain values of $K_p$ and $K_i$.
+\par The peak-to-peak time was measured to obtain the ultimate time period $P_u = 0.407$ s, giving an ultimate gain of $K_u = 0.016$.
+\par The Ziegler Nichols tuning equations were applied to obtain the controller values of $K_p$ and $K_i$. The response of the system using the calculated $K_p$ and $K_i$ is shown in \textit{Figure \ref{fig:q2-first}}. An important consideration is that the produced $K_i$ value produced unstable step responses, so it was scaled down by an order of magnitude of two to obtain a stable plot.
 \begin{align*}
     K_p & = 0.45 * K_u = 0.45 * 0.016 = 0.0072   \\
     K_i & = 0.83 * P_u = 0.83 * 0.407459 = 0.338
@@ -95,31 +103,26 @@
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.6\textwidth]{q2-g2.png}
-    \caption{The step response with scaled $K_i$, obtained from Ziegler-Nichels method.}
+    \caption{The step response with scaled $K_i$, obtained from Ziegler-Nichols method.}
     \label{fig:q2-first}
 \end{figure}
-\par The $K_p$ and $K_i$ values were then adjusted by multiplying both by the sample time $T_s = 0.1$s to give us
-\begin{align*}
-    K_p & = 0.00072 \\
-    K_i & = 0.0338
-\end{align*}
-\par Upon testing these values, the output displayed violent oscilations hence $K_i$ was once again scaled by a magnitude of 10 which when implemented produced the following:
-
-\par Whilst the settling time was within the required parameters, the time to peak exceeded the 1 second requirement hence $K_i$ was increased to 0.005.
+\par The $K_p$ and $K_i$ values were then adjusted by multiplying both by the sample time $T_s = 0.1$s to produce $K_p = 0.00072$ and $K_i = 0.0338$.
+\par Upon testing these values, the output displayed violent oscilations. Hence, $K_i$ was once again scaled down by a magnitude of 10. When implemented, this produced the step response depicted in \textit{Figure \ref{fig:q2-second}}.
+\par Whilst the settling time was within the required parameters, the peak time exceeded the 1 second requirement, hence $K_i$ was increased to 0.005.
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.5\textwidth]{q2-g3.png}
     \caption{Step response of an adjusted $K_i$ to meet the response requirements.}
     \label{fig:q2-second}
 \end{figure}
-\par Finally, for open loop we had been using a step input of 0 to 1 in magnitude, however in closed loop a reference speed was required. Hence a gain block of $K = 834$, the steady state observed in open loop analysis utilised for the transfer function, was used.
+\par Finally, for open loop analysis, a step input of magnitude 1 was used. However, in a closed-loop system a reference speed was required. Hence, a block of gain $K=834$ (the steady state gain, observed in open loop analysis) was used to scale the output. The step response of the tuned model is shown in \textit{Figure \ref{fig:q2-third}}.
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.5\textwidth]{q2-g4.png}
     \caption{Step response, expected from the motor.}
     \label{fig:q2-third}
 \end{figure}
-\par The Simulink model that was used to generate the plots is presented in
+\par The Simulink model that was used to generate the plots is presented in \textit{Figure \ref{fig:q2-model}}.
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.6\textwidth]{q2-model.png}
