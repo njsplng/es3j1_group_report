@@ -41,11 +41,10 @@
     \item The obtained transfer function was scaled by dividing both the numerator and the denominator by step time.
     \item The obtained transfer function was plotted against the unfiltered motor output to verify the model accuracy and legitimacy. If proven significantly inaccurate, the design process was repeated until a fitting filter that produced a smooth transfer function was obtained.
 \end{enumerate}
-\par The resulting transfer function's step response is shown in \textit{Figure \ref{fig:q1-graph}} (titled as "Computed (SIT)").
-
-\par An alternative method for tuning the transfer function was also explored. This approach was found in \cite{umichControlTutorials} and was executed in the following steps:
+\par The resulting transfer function's step response is shown in \textit{Figure \ref{fig:q1-graph}} (titled as "Computed (SIT)"). \\\:
+\par An alternative method for tuning the transfer function was also explored, as the steady state value of the produced function did not exactly match the motor output on the graph. The new tuning approach was found in \cite{umichControlTutorials} and was executed in the following steps:
 \begin{enumerate}
-    \item Steps 1-3 were repeated from the previous method.
+    \item Steps 1-3 were repeated from the previous method: a simple low-pass filter was set up, motor circuit was assembled and the motor response to a step input was saved to the workspace.
     \item Find the maximum gain reached by the output. This will be regarded as the absolute – or steady state – gain. This was recorded to be a value of 834.
     \item The time constant for the response was calculated. As the first order transfer function subjected to a step response reaches 63.2\% of its output when the system reaches its first time constant. For this case, the value of 528.76 rpm needed to be reached – which the system does in 1.185s. As the step is applied at $t=1$ s, the time constant is $\tau = 1.185 - 1 = 0.185$s.
     \item Using the standard first order transfer function model:
@@ -58,14 +57,20 @@
           \end{align*}
 \end{enumerate}
 \par The resulting transfer function's step response is shown in \textit{Figure \ref{fig:q1-graph}} (titled as "Graphical").
-\\\par The final design allowed for the produced output to be of a smooth 1st order transfer function response, which enabled further analysis and tuning of the system.
-\par
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=\textwidth]{q1-graphs.png}
+    \includegraphics[width=0.6\textwidth]{q1-graphs.png}
     \caption{Step responses of transfer functions }
     \label{fig:q1-graph}
 \end{figure}
+\par The performance of the both functions were compared by calculating the mean-squared errors (MSEs) $\epsilon$ for each in a given timeframe:
+\begin{itemize}
+    \item Transient-state error ($0 < t <= 2$): the computed transfer function MSE was found to be $\epsilon_{ts-c} = 3.77 \times 10^4$, while the graphically-found transfer function's MSE was found to be $\epsilon_{ts-g} = 1.66 \times 10^4$. Overall, the MSE is 227\% higher on the SIT-computed than the graphically-calculated transfer function.
+    \item Steady-state error ($t > 2$): the computed transfer function's MSE during the steady-state operation was found to be $\epsilon_{ss-c} = 243.0$ and the graphically-found transfer function's MSE during steady-state operation was $\epsilon_{ss-g} = 17.6$. Overall, there was a 1381\% increase in the MSE value of the SIT-calculated transfer function compared to the graphically-calculated transfer function.
+    \item Overall error ($t > 0$): the total MSE for the SIT-calculated transfer function was $\epsilon_{T-c}=3.94\times10^{3}$ while the overall MSE for the graphically-calculated transfer function was $\epsilon_{T-g}=1.66\times10^{3}$. Overall, the total MSE was 237\% larger for the SIT-calculated transfer function than for the graphically-generated function.
+\end{itemize}
+\par Having evaluated the errors, any further tasks were performed using the graphically-generated transfer function, as it outperformed the SIT-generated function on every timeframe and fit the specifications just as well.
+\par The final design allowed for the produced output to be of a smooth 1st order transfer function response, which enabled further analysis and tuning of the system in the subsequent tasks.
 \section*{Question 2}
 \par \textit{Describe all the steps that you used in obtaining the PI controller gains, (i.e. $K_p$ and $K_i$). It is highly encouraged to implement the PI controller manually instead of using the built-in PID Controller block.}
 \par \textit{Include any results you deem essential to support your findings. Remember to take into practical consideration of the final controller gains that you will implement on the Arduino Uno. In other words, while in simulation, you can set the gains to a large value to get good performance, whether this large gain values are feasible or not to be implemented on the Arduino Uno is another matter.}
