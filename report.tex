@@ -71,11 +71,61 @@
 \par Having evaluated the errors, further tasks were performed using the graphically-generated transfer function, as it outperformed the SIT-generated function on every timeframe and better fit the specifications.
 \par Upon observation of the motor function, the motor had a 0.1 second delay present, thus the transfer function should be multiplied by $e^{-0.1s}$ to account for the delay.
 \par The final design allowed for the produced output to be a smooth 1st order transfer function response, which enabled further analysis and tuning of the system in the subsequent tasks.
+\par The open-loop Simulink model used to obtained the results discussed in this section is shown in \textit{Figure \ref{fig:q1-model}}.\\
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{q1-model.png}
+    \caption{The model used to obtain the measures}
+    \label{fig:q1-model}
+\end{figure}
 \section*{Question 2}
-\par \textit{Describe all the steps that you used in obtaining the PI controller gains, (i.e. $K_p$ and $K_i$). It is highly encouraged to implement the PI controller manually instead of using the built-in PID Controller block.}
-\par \textit{Include any results you deem essential to support your findings. Remember to take into practical consideration of the final controller gains that you will implement on the Arduino Uno. In other words, while in simulation, you can set the gains to a large value to get good performance, whether this large gain values are feasible or not to be implemented on the Arduino Uno is another matter.}
-\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
-\par \textbf{TEXT GOES HERE}
+\par Using the transfer function obtained from graphical analysis we began closed loop analysis to ascertain the PI values required for the controller. We chose to use the Ziegler-Nichols Method. An initial PI system was created with $K_p$ and $K_i$ set to zero. $K_p$ was then slowly increased in increments of 0.001 until consistent oscillations were present. At $K_p = 0.016$ oscillations, shown in \textit{Figure \ref{fig:q2-oscillatory}}, occured.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.6\textwidth]{q2-g1.png}
+    \caption{The oscillatory graph used in the Ziegler-Nichels tuning}
+    \label{fig:q2-oscillatory}
+\end{figure}
+\par The peak to peak time was measured to obtain the ultimate time period $P_u = 0.407$s giving an ultimate gain of $K_u = 0.016$.
+\par The Ziegler Nicholas tuning equations were applied to obtain values of $K_p$ and $K_i$.
+\begin{align*}
+    K_p & = 0.45 * K_u = 0.45 * 0.016 = 0.0072   \\
+    K_i & = 0.83 * P_u = 0.83 * 0.407459 = 0.338
+\end{align*}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.6\textwidth]{q2-g2.png}
+    \caption{The step response with scaled $K_i$, obtained from Ziegler-Nichels method.}
+    \label{fig:q2-first}
+\end{figure}
+\par The $K_p$ and $K_i$ values were then adjusted by multiplying both by the sample time $T_s = 0.1$s to give us
+\begin{align*}
+    K_p & = 0.00072 \\
+    K_i & = 0.0338
+\end{align*}
+\par Upon testing these values, the output displayed violent oscilations hence $K_i$ was once again scaled by a magnitude of 10 which when implemented produced the following:
+
+\par Whilst the settling time was within the required parameters, the time to peak exceeded the 1 second requirement hence $K_i$ was increased to 0.005.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{q2-g3.png}
+    \caption{Step response of an adjusted $K_i$ to meet the response requirements.}
+    \label{fig:q2-second}
+\end{figure}
+\par Finally, for open loop we had been using a step input of 0 to 1 in magnitude, however in closed loop a reference speed was required. Hence a gain block of $K = 834$, the steady state observed in open loop analysis utilised for the transfer function, was used.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{q2-g4.png}
+    \caption{Step response, expected from the motor.}
+    \label{fig:q2-third}
+\end{figure}
+\par The Simulink model that was used to generate the plots is presented in
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.6\textwidth]{q2-model.png}
+    \caption{The model used to obtain the plots.}
+    \label{fig:q2-model}
+\end{figure}
 \section*{Question 3}
 \par \textit{To fully test the performance of your PI controller, the Desired Motor Speed (Reference) should cover a substantial range of practical motor speed. Critically comment on your results. Include any results you deem essential to support your findings. Also, do remember to comment on the expectation (Task 2) versus reality (Task 3) of the implementation.}
 \noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
