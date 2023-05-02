@@ -154,9 +154,18 @@
 \par The primary reason for a difference between the performance of the motor in simulation and in the real-world is due to the fact that the mechanical properties of the device are difficult to model in simulation. Electrical properties can be modelled with greater accuracy, but parameters such as friction which could act against the rotor torque, thereby reducing the motor speed and limiting the current through the coils, is much more difficult to predict. Typically, friction effects are less noticeable at higher speeds, and have a much greater impact at lower speeds. Coulomb friction and viscous friction are two such examples. Coulomb friction opposes motion and is always present, and is independent of velocity. Viscous friction is dependent on velocity, and therefore increases as velocity increases \cite{Virgala2013}.
 \par Additionally, non-linearities inherent in the behaviour of the motor are assumed to be negligible when designing the model and generating a linear transfer function. This is because it is more convenient and is often sufficient for conventional control problems. However, this non-linear behaviour in certain regions of operation, make the PI controller difficult to tune for real-world usage, as the effects of friction are highly varied and dependent on parameters which are not easily modelled. Once such example of this is demonstrated well by the graphs at lower motor speeds, where static friction is particularly challenging to overcome. Static friction is an effect which occurs when a component has been inactive for a certain period of time, and therefore requires a greater force to start the relative motion than the force which is required to sustain this motion. This effect is demonstrated well by the longer settling time shown at lower motor speeds than that of the motor running at full speed, proving that more force was required to start the motor and overcome the static friction \cite{ijsrpStudyNonlinear}.
 \section*{Question 4}
-\par \textit{Using what you have learned throughout this module (and beyond such as non- linearities effect, etc), try to improve the performance of the DC motor whether from the modelling side or the control design side. Feel free to explore and be adventurous in this exercise (as long as the safety precaution is adhered to ensure you do not damage the DC motor and the Arduino Uno). If required, revisit back all the steps from Tasks 1 to 3. Remember that in an actual engineering work, there is always room for improvement and the process is always iterative.}
-\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
-\par \textbf{TEXT GOES HERE}
+\par To further improve upon the controller design for our group task, we decided to utilise the Model Predictive Control (MPC) method in Simulink, this was obtained by installed the Model Predictive Control Toolbox in MATLAB.
+\par Model Predictive Control systems operates by using numerically minimising a cost function of a plant provided to it, to generate output predictions over a finite time horizon, continuously iterating over time \textbf{ref 1}.
+\par A typical MPC system contains an input-output system to control, in this instance it’s the DC powered motor where the input is voltage \& output is torque.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.6\textwidth]{q4-schematic.png}
+    \caption{The motor's response to a half step input.}
+    \label{fig:q3-second}
+\end{figure}
+\par MPC is an improvement as it computes predicted future output values and computes a predicted future error as input for its cost-function optimizer. The optimizer will produce new inputs for the model and feed the model the input value that produces the least error. The cost-function optimizer does this by enforcing the constraints of the system (the first order equations derived from the transfer function that represents the DC motor system offline). \textbf{ref 3}
+\par This reduces overall control effort of the system, in comparison to traditional PI/PID controllers and thus better overall responses, regarding peak time, settling time \& percentage overshoot.
+
 \bibliographystyle{IEEEtran}
 \bibliography{References}
 \end{document}

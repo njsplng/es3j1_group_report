@@ -1030,6 +1030,11 @@ INPUT q3-g3.png
 INPUT ./q3-g3.png
 INPUT ./q3-g3.png
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
+INPUT ./q4-schematic.png
+INPUT ./q4-schematic.png
+INPUT q4-schematic.png
+INPUT ./q4-schematic.png
+INPUT ./q4-schematic.png
 INPUT ./report.bbl
 INPUT report.bbl
 INPUT ./report.bbl

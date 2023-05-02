@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.25)  1 MAY 2023 22:56
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.25)  2 MAY 2023 13:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -531,7 +531,11 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 File: l3backend-pdftex.def 2022-02-07 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count318
 \l__pdf_internal_box=\box67
-) (./report.aux)
+) (./report.aux
+
+LaTeX Warning: Label `fig:q3-second' multiply defined.
+
+)
 \openout1 = `report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 22.
@@ -725,23 +729,32 @@ File: q3-g3.png Graphic file (type png)
 <use q3-g3.png>
 Package pdftex.def Info: q3-g3.png  used on input line 149.
 (pdftex.def)             Requested size: 273.14923pt x 205.40405pt.
- [6 <./q2-model.png> <./q3-g1.png> <./q3-g2.png>] [7 <./q3-g3.png>] (./report.bbl) [8] (./report.aux)
+ [6 <./q2-model.png> <./q3-g1.png> <./q3-g2.png>] [7 <./q3-g3.png>]
+<q4-schematic.png, id=111, 852.18375pt x 467.7475pt>
+File: q4-schematic.png Graphic file (type png)
+<use q4-schematic.png>
+Package pdftex.def Info: q4-schematic.png  used on input line 162.
+(pdftex.def)             Requested size: 273.14923pt x 149.92491pt.
+ (./report.bbl) [8 <./q4-schematic.png>] (./report.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package rerunfilecheck Info: File `report.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 25116 strings out of 478268
- 465106 string characters out of 5846347
- 769756 words of memory out of 5000000
- 42761 multiletter control sequences out of 15000+600000
- 480357 words of font info for 111 fonts, out of 8000000 for 9000
+ 25126 strings out of 478268
+ 465280 string characters out of 5846347
+ 769795 words of memory out of 5000000
+ 42767 multiletter control sequences out of 15000+600000
+ 480408 words of font info for 112 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,8n,94p,1216b,559s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
-Output written on report.pdf (8 pages, 528219 bytes).
+Output written on report.pdf (8 pages, 661943 bytes).
 PDF statistics:
- 185 PDF objects out of 1000 (max. 8388607)
- 133 compressed objects within 2 object streams
- 39 named destinations out of 1000 (max. 500000)
- 20548 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 188 PDF objects out of 1000 (max. 8388607)
+ 134 compressed objects within 2 object streams
+ 40 named destinations out of 1000 (max. 500000)
+ 20553 words of extra memory for PDF output out of 20736 (max. 10000000)
 
