@@ -33,7 +33,7 @@
 \par The output produced by the motor is not smooth, so to obtain its model that can be analysed using control system theory, a filter needs to be designed.
 \par The filter (and thus, the model) tuning was done according to the brief. The process followed the steps outlined below:
 \begin{enumerate}
-    \item The filter coefficient was set to the simplest low-pass transfer function $\frac{1}{0.1s+1}$ to start smoothing the motor output, obtained by applying the step input. An example filter performance is shown in \textit{Figure \ref{fig:q1-filter}}.
+    \item The filter coefficient was set to the simplest low-pass transfer function $\frac{1}{0.1s+1}$ to start smoothing the motor output obtained by applying the step input. An example filter performance is shown in \textit{Figure \ref{fig:q1-filter}}.
           \begin{figure}[h!]
               \centering
               \includegraphics[width=0.6\textwidth]{q1-filter.png}
@@ -51,8 +51,8 @@
 \par An alternative method for tuning the transfer function was also explored, as the steady state value of the produced function did not exactly match the motor output on the graph. The new tuning approach was found in \cite{umichControlTutorials} and was executed in the following steps:
 \begin{enumerate}
     \item Steps 1-3 were repeated from the previous method: a simple low-pass filter was set up, the motor circuit was assembled and the motor response to a step input was saved to the workspace.
-    \item Find the maximum gain reached by the output. This is regarded as the absolute – or steady state – gain. The value recorded was 834.
-    \item The time constant for the response was calculated. This was defined as the time to reach 63.2\% of the steady-state value. In this case, a value of 528.76 RPM needed to be reached. The time to reach this value was calculated to be 1.185s. As the step was applied at $t=1$ s, the time constant was therefore $\tau = 1.185 - 1 = 0.185$s.
+    \item The maximum gain reached by the output was then found. This was regarded as the absolute – or steady state – gain. The value recorded was 834.
+    \item The time constant for the response was then calculated. This was defined as the time to reach 63.2\% of the steady-state value. In this case, a value of 528.76 RPM needed to be reached. The time to reach this value was calculated to be 1.185s. As the step was applied at $t=1$s, the time constant was therefore $\tau = 1.185 - 1 = 0.185$s.
     \item Using the standard first order transfer function model:
           \begin{align*}
               G(s)=\frac{Y(s)}{X(s)}=\frac{K}{\tau s + 1}
@@ -66,7 +66,7 @@
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.6\textwidth]{q1-graphs.png}
-    \caption{Step responses of transfer functions }
+    \caption{Step responses of transfer functions.}
     \label{fig:q1-graph}
 \end{figure}
 \par The performance of the both functions were compared by calculating the mean-squared errors (MSEs) $\epsilon$ for each in a given timeframe:
@@ -75,14 +75,14 @@
     \item Steady-state error ($t > 2$): the SIT-calculated transfer function's MSE during the steady-state operation was found to be $\epsilon_{ss-c} = 243.0$ and the graphically-found transfer function's MSE during steady-state operation was $\epsilon_{ss-g} = 17.6$. Overall, there was a 1381\% increase in the MSE value of the SIT-calculated transfer function compared to the graphically-calculated transfer function.
     \item Overall error ($t > 0$): the total MSE for the SIT-calculated transfer function was $\epsilon_{T-c}=3.94\times10^{3}$ while the overall MSE for the graphically-calculated transfer function was $\epsilon_{T-g}=1.66\times10^{3}$. Overall, the total MSE was 237\% larger for the SIT-calculated transfer function than for the graphically-generated function.
 \end{itemize}
-\par Having evaluated the errors, further tasks were performed using the graphically-generated transfer function, as it outperformed the SIT-generated function for both transient and steady-state parts.
+\par Having evaluated the errors, further tasks were performed using the graphically-generated transfer function, as it outperformed the SIT-generated function for both transient and steady-state parts of the response.
 \par Upon observation of the motor function, the motor had a 0.1 second delay, thus the transfer function needed to be multiplied by $e^{-0.1s}$ to account for this delay.
 \par The final design allowed for the produced output to be a smooth 1st order response, which enabled further analysis and tuning of the system in the subsequent tasks.
 \par The open-loop Simulink model used to obtained the results discussed in this section is shown in \textit{Figure \ref{fig:q1-model}}.\\
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.75\textwidth]{q1-model.png}
-    \caption{The model used to obtain the measures}
+    \caption{The model used to obtain the measurements.}
     \label{fig:q1-model}
 \end{figure}
 \section*{Question 2}
@@ -91,11 +91,11 @@
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.6\textwidth]{q2-g1.png}
-    \caption{The oscillatory graph used in the Ziegler-Nichols tuning}
+    \caption{The oscillatory graph used in the Ziegler-Nichols tuning.}
     \label{fig:q2-oscillatory}
 \end{figure}
 \par The peak-to-peak time was measured to obtain the ultimate time period $P_u = 0.407$ s, giving an ultimate gain of $K_u = 0.016$.
-\par The Ziegler Nichols tuning equations were applied to obtain the controller values of $K_p$ and $K_i$. The response of the system using the calculated $K_p$ and $K_i$ is shown in \textit{Figure \ref{fig:q2-first}}. An important consideration is that the produced $K_i$ value produced unstable step responses, so it was scaled down by an order of magnitude of two to obtain a stable plot.
+\par The Ziegler Nichols tuning equations were applied to obtain the controller values of $K_p$ and $K_i$. The response of the system using the calculated $K_p$ and $K_i$ is shown in \textit{Figure \ref{fig:q2-first}}. An important consideration is that the chosen $K_i$ value produced unstable step responses, so it was scaled down by an order of magnitude of two to obtain a stable plot.
 \begin{align*}
     K_p & = 0.45 * K_u = 0.45 * 0.016 = 0.0072   \\
     K_i & = 0.83 * P_u = 0.83 * 0.407459 = 0.338
@@ -112,10 +112,10 @@
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.6\textwidth]{q2-g3.png}
-    \caption{Step response of an adjusted $K_i$ to meet the response requirements.}
+    \caption{Step response of adjusted $K_i$ to meet the response requirements.}
     \label{fig:q2-second}
 \end{figure}
-\par Finally, for open loop analysis, a step input of magnitude 1 was used. However, in a closed-loop system a reference speed was required. Hence, a block of gain $K=834$ (the steady state gain, observed in open loop analysis) was used to scale the output. The step response of the tuned model is shown in \textit{Figure \ref{fig:q2-third}}.
+\par Finally, for open loop analysis, a step input of magnitude 1 was used. However, a reference signal was required to complete the closed-loop system. Hence, a block of gain $K=834$ (the steady state gain observed in open loop analysis) was used to scale the output. The step response of the tuned model is shown in \textit{Figure \ref{fig:q2-third}}.
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.6\textwidth]{q2-g4.png}
@@ -130,14 +130,14 @@
     \label{fig:q2-model}
 \end{figure}
 \section*{Question 3}
-\par After having the simulated model working, the next step was to integrate it on the Arduino to check against the posed requirements and physical constraints.
+\par Once the simulated model was working, the next step was to integrate it with the Arduino to check that the offline model met the requirements in line with physical constraints.
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.6\textwidth]{q3-g1.png}
     \caption{The step response of the motor at full speed with a PI controller.}
     \label{fig:q3-first}
 \end{figure}
-\par As observed \textit{Figure \ref{fig:q3-first}}, the response in simulation was very close to the actual response generated by the motor. The response stabilised well within the peak limit and settling limit and showed no overshoot of the steady-state value. In fact, it reached the steady-state faster than the simulated response, with a settling time of around 0.8 seconds, compared to 1.28 seconds for the simulated response. This confirmed that the chosen values for the PI controller were accurate and produced the desired results. In order to further verify the accuracy of the controller, different motor speeds were tested. These produced more varied results as shown in \textit{Figures \ref{fig:q3-second} and \ref{fig:q3-third}}.
+\par As observed in \textit{Figure \ref{fig:q3-first}}, the response in simulation was very close to the actual response generated by the motor. The response stabilised well within the peak limit and settling time limit and showed no overshoot of the steady-state value. In fact, it reached the steady-state faster than the simulated response, with a settling time of around 0.8 seconds, compared to 1.28 seconds for the simulated response. This confirmed that the chosen values for the PI controller were accurate and produced the desired results. In order to further verify the accuracy of the controller, different motor speeds were tested. These produced more varied results as shown in \textit{Figures \ref{fig:q3-second} and \ref{fig:q3-third}}.
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.6\textwidth]{q3-g2.png}
@@ -148,49 +148,49 @@
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.6\textwidth]{q3-g3.png}
-    \caption{The motor's response to a full step input.}
+    \caption{The motor's response to a quarter step input.}
     \label{fig:q3-third}
 \end{figure}
 \par The results in \textit{Figure \ref{fig:q3-third}} show that the PI controller did not meet any of the specifications when the motor was run at a quarter speed. The overshoot of 275 RPM was far too high, and showed much more oscillation before a steady-state was eventually reached. This was far from the predicted response gained using the transfer function, and prompted exploration into why these discrepancies might have occurred.
 \par The primary reason for a difference between the performance of the motor in simulation and in the real-world is due to the fact that the mechanical properties of the device are difficult to model in simulation. Electrical properties can be modelled with greater accuracy, but parameters such as friction which could act against the rotor torque, thereby reducing the motor speed and limiting the current through the coils, is much more difficult to predict. Typically, friction effects are less noticeable at higher speeds, and have a much greater impact at lower speeds. Coulomb friction and viscous friction are two such examples. Coulomb friction opposes motion and is always present, and is independent of velocity. Viscous friction is dependent on velocity, and therefore increases as velocity increases \cite{Virgala2013}.
-\par Additionally, non-linearities inherent in the behaviour of the motor are assumed to be negligible when designing the model and generating a linear transfer function. This is because it is more convenient and is often sufficient for conventional control problems. However, this non-linear behaviour in certain regions of operation, make the PI controller difficult to tune for real-world usage, as the effects of friction are highly varied and dependent on parameters which are not easily modelled. Once such example of this is demonstrated well by the graphs at lower motor speeds, where static friction is particularly challenging to overcome. Static friction is an effect which occurs when a component has been inactive for a certain period of time, and therefore requires a greater force to start the relative motion than the force which is required to sustain this motion. This effect is demonstrated well by the longer settling time shown at lower motor speeds than that of the motor running at full speed, proving that more force was required to start the motor and overcome the static friction \cite{ijsrpStudyNonlinear}.
+\par Additionally, non-linearities inherent in the behaviour of the motor are assumed to be negligible when designing the model and generating a linear transfer function. This is because it is more convenient and is often sufficient for conventional control problems. However, this non-linear behaviour in certain regions of operation make the PI controller difficult to tune for real-world usage, as the effects of friction are highly varied and dependent on parameters which are not easily modelled. Once such example of this is demonstrated well by the graphs at lower motor speeds, where static friction is particularly challenging to overcome. Static friction is an effect which occurs when a component has been inactive for a certain period of time, and therefore requires a greater force to start the relative motion than the force which is required to sustain this motion. This effect is demonstrated well by the longer settling time shown at lower motor speeds than that of the motor running at full speed, proving that more force was required to start the motor and overcome the static friction \cite{ijsrpStudyNonlinear}.
 \section*{Question 4}
-\par To compensate for some of the controller weaknesses encountered in previous chapter, a variety of techniques were explored – some of which are discussed below. The techniques were used individually and not coupled to explore their effect on the PI controller.
+\par To compensate for some of the controller weaknesses encountered in the previous chapter, a variety of further techniques were explored – some of which are discussed below. The techniques were used individually and not coupled to explore their effect on the PI controller.
 \subsection*{PID Control}
-\par The PI controller performed optimally at full speed, however it showed more variation when the motor was run at half speed and quarter speed with regard to overshoot and oscillations in the transient response. This showed that further tuning was necessary, thus PID control was explored as a method to overcome these shortcomings. The intention of adding the derivative controller was to reduce overshoot, as derivative gain is proportional to the rate of change of the process variable, so acts to reduce output when the process variable is increasing quickly. The tuning of this gain parameter followed an offline trial and error approach, as values could be tested more quickly and safely than the online equivalent. Once a suitable order of magnitude was determined in simulation, more specific values were tested using the motor. The ideal order of magnitude for the derivative gain was found to be $10^{-5}$, thus the gain was slowly increased from $0.00001$ in increments of $0.000005$, with the motor running at half speed until the optimal response was reached. The $K_i$ and $K_p$ values were left unchanged, and this resulted in a $K_d$ value of 0.00004 producing the best response at lower motor speeds.
+\par The PI controller performed optimally at full speed, however it showed more variation when the motor was run at half speed and quarter speed with regards to overshoot and oscillations in the transient response. This showed that further tuning was necessary, thus PID control was explored as a method to overcome these shortcomings. The intention of adding the derivative controller was to reduce overshoot, as derivative gain is proportional to the rate of change of the process variable, so acts to reduce output when the process variable is increasing quickly. The tuning of this gain parameter followed an offline trial and error approach, as values could be tested more quickly and safely than the online equivalent. Once a suitable order of magnitude was determined in simulation, more specific values were tested using the motor. The ideal order of magnitude for the derivative gain was found to be $10^{-5}$, thus the gain was slowly increased from $0.00001$ in increments of $0.000005$, with the motor running at half speed until the optimal response was reached. The $K_i$ and $K_p$ values were left unchanged, and this resulted in a $K_d$ value of 0.00004 producing the best response at lower motor speeds.
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.6\textwidth]{q4-pid1.png}
-    \caption{The motor's response at full-speed, using PID.}
+    \caption{The motor's response at full speed, using PID.}
     \label{fig:q4-pid1}
 \end{figure}
-\par With PID control applied, the step response in \textit{Figure \ref{fig:q4-pid1}}. As shown by the graph, there is no overshoot of the steady state value, and the settling time of 884 ms falls adequately within the settling time limit. This is very similar to the response seen using PI control, and confirms that the PI values chosen for this controller were correct.
+\par With PID control applied, the step response in \textit{Figure \ref{fig:q4-pid1}} was produced. As shown by the graph, there is no overshoot of the steady state value, and the settling time of 884 ms falls adequately within the settling time limit. This is very similar to the response seen using PI control, and confirms that the PI values chosen for this controller were correct.
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.6\textwidth]{q4-pid2.png}
-    \caption{The motor's response at half-speed, using PID.}
+    \caption{The motor's response at half speed, using PID.}
     \label{fig:q4-pid2}
 \end{figure}
 \par The graph in \textit{Figure \ref{fig:q4-pid2}} shows vast improvement in the desired areas, with a settling time and overshoot within the predetermined limits. The response shows an overshoot of just under 20\%, as it reaches 499 RPM, and just settles within the required $1.5 \text{s}$. Although this controller only just fulfils the requirements, any corrections to individual aspects appeared to come at the expense of deteriorating other areas of the response. For example, although increasing the derivative gain effectively reduced overshoot, it resulted in greater oscillations in the steady state part of the response, and a slightly longer settling time. For this reason, the values of $K_p$, $K_i$ and $K_d$ were chosen such that the controller remained just within the overshoot and settling time limits, whilst maintaining a smoother steady state response at the desired RPM.
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.6\textwidth]{q4-pid3.png}
-    \caption{The motor's response at quarter-speed, using PID.}
+    \caption{The motor's response at quarter speed, using PID.}
     \label{fig:q4-pid3}
 \end{figure}
-\par In \textit{Figure \ref{fig:q4-pid3}}, the step response using PID control again showed improvement to the PI control output, which displayed greater overshoot and oscillated much more in the transient part of the response than the result using PID control. A peak speed of 261 RPM was reached, which was just beyond the desired 20\% overshoot limit, and the same was true of the settling time, which appeared to occur at around 1.5 s. Similarly to the results at half speed, a compromise between the optimisation of these factors was reached, with the Kp, Ki and Kd values chosen such that overshoot was limited while keeping oscillations in the steady state to a minimum, and remaining just within the settling time bounds.
+\par In \textit{Figure \ref{fig:q4-pid3}}, the step response using PID control again showed improvement to the PI control output, which displayed greater overshoot and oscillated much more in the transient part of the response than the result using PID control. A peak speed of 261 RPM was reached, which was just beyond the desired 20\% overshoot limit, and the same was true of the settling time, which appeared to occur at around 1.5 s. Similarly to the results at half speed, a compromise between the optimisation of these factors was reached, with the $K_p$, $K_i$ and $K_d$ values chosen such that overshoot was limited while keeping oscillations in the steady state to a minimum, and remaining just within the settling time bounds.
 \subsection*{Model Predictive Control Integration}
 \par To further improve upon the controller design for our group task, we decided to utilise the Model Predictive Control (MPC) method in Simulink, this was obtained by installing the Model Predictive Control Toolbox in MATLAB.
-\par Model Predictive Control systems operates by using numerically minimising the cost function of a plant provided to it, to generate output predictions over a finite time horizon, continuously iterating over time \cite{Nikolaou2001}.
+\par Model Predictive Control system operates by numerically minimising the cost function of a plant provided to it, to generate output predictions over a finite time horizon, continuously iterating over time \cite{Nikolaou2001}.
 \par A typical MPC system contains an input-output system to control, in this instance, the DC powered motor where the input is voltage and output is RPM.
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.6\textwidth]{q4-schematic.png}
-    \caption{DC motor circuit schematic \cite{article}}
+    \caption{DC motor circuit schematic \cite{article}.}
     \label{fig:q4-schematic}
 \end{figure}
-\par MPC is an improvement as it computes predicted future output values and thus predicted future errors which are used as the input for its cost-function optimiser. The optimiser will produce new inputs for the model and feeds the model the input value that produces the least error. The cost-function optimiser does this by enforcing the constraints of the system (the first order equations derived from the transfer function that represent the DC motor system offline) \cite{libretexts123MIMO}.
-\par This reduces the overall control effort of the system, in comparison to traditional PI/PID controllers and thus produces better overall responses, regarding peak time, settling time and percentage overshoot. The parameters used in the MPC and the response parameters are summarised in \textit{Tables 1} and \textit{2}.
+\par MPC is an improvement as it computes predicted future output values and thus predicted future errors which are used as the input for its cost-function optimiser. The optimiser will produce new inputs for the model and feed the model the input value that produce the least error. The cost-function optimiser does this by enforcing the constraints of the system (the first order equations derived from the transfer function that represent the DC motor system offline) \cite{libretexts123MIMO}.
+\par This reduces the overall control effort of the system, in comparison to traditional PI/PID controllers and thus produces better overall responses regarding peak time, settling time and percentage overshoot. The parameters used in the MPC and the response parameters are summarised in \textit{Tables 1} and \textit{2}.
 \begin{table}[h!]
     \centering
     \begin{tabular}{| c | c | c | c |}
@@ -225,34 +225,34 @@
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.48\textwidth]{q4-g1.png} \includegraphics[width=0.48\textwidth]{q4-g2.png}
-    \caption{The motor's response at full-speed, using PID.}
+    \caption{The motor's response at full speed and half speed using MPC.}
     \label{fig:q4-g1}
 \end{figure}
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.48\textwidth]{q4-g3.png} \includegraphics[width=0.48\textwidth]{q4-g4.png}
-    \caption{quarter and tenth speeds}
+    \caption{The motor's response at a quarter and tenth speed using MPC.}
     \label{fig:q4-g2}
 \end{figure}
 \subsection*{Phase Lead Compensators}
-\par To compensate for the overshoot present in the response while using the PI controller, our team decided to develop a phase lead compensator (PLC). PLCs are used to improve the stability of feedback control systems and aims to increase the response speed \cite{sciencedirectLeadCompensator}. Which in context for this project equates to the settling time. This was the primary justification to pursue this design.
+\par To compensate for the overshoot present in the response while using the PI controller, a phase lead compensator (PLC) was developed. PLCs are used to improve the stability of feedback control systems and aim to increase the response speed \cite{sciencedirectLeadCompensator}, also known as the settling time. This was the primary justification for pursuing this design.
 \par Lead compensators are designed to be implemented into a system in transfer function form, so the derivation comes from a root-locus of a typical PLC \cite{umichControlTutorials1}:
 \begin{align*}
     C(s)=\frac{K_c(s-z_0)}{(s-p_0)}
 \end{align*}
-\par For consistency an identical plant function  of $(\frac{834}{0.185s\ +\ 1})$ was used for implementation. A first order lead compensator contributes one pole and one zero to the loop, in the case of a lead compensator $z_0<p_0$. An iterative process was then used to tune the controller. There are three tuneable parameters for this model. $K_C$, $z$ and $p$. Upon inspection, $K_C$ set the steady state value of the system. Varying $p$ would alter the steady state and varying $z$ would alter the settling time, at the expense of a small overshoot ($\ll20$\%). Initially the best trials came from when $p_0=0$. This was the best $p$ value to consistently maintain the ideal steady state value. Therefore, the transfer function simplified as follows:
+\par For consistency an identical plant function  of $(\frac{834}{0.185s\ +\ 1})$ was used for implementation. A first order lead compensator contributes one pole and one zero to the loop, in the case of a lead compensator $z_0<p_0$. An iterative process was then used to tune the controller. There are three tuneable parameters for this model. $K_C$, $z_0$ and $p_0$. Upon inspection, $K_C$ set the steady state value of the system. Varying $p_0$ would alter the steady state and varying $z_0$ would alter the settling time, at the expense of a small overshoot ($\ll20$\%). The best solutions occured when $p_0=0$. This was chosen to consistently maintain the ideal steady state value. Therefore, the transfer function simplified as follows:
 \begin{align*}
     C\left(s\right)=\frac{K_c\left(s-z_0\right)}{(s-p_0)}=\frac{K_cs-K_cz_0}{s}=\frac{K_cs}{s}-\frac{K_cz_0}{s}=\ K_c-\frac{K_cz_0}{s}
 \end{align*}
-\par Upon consideration the transfer function of this controller appears to behave like a basic PI controller and thus no significant improvements could be made with these parameters.
+\par Upon consideration this controller appeared to behave like a basic PI controller and thus no significant improvements could be made with these parameters.
 \begin{align*}
     PI=K_p+\frac{K_i}{s}\ \ \approx\ K_c-\frac{K_cz_0}{s}
 \end{align*}
-\par Therefore the parameters had to be further iterated with $p$ not equal to zero, and it was found that values of $K_C = 0.0012$, $p= 0.01$, $z= -5.5$ improved the settling time at full speed (834 RPM) and was successfully implemented on the motor (\textit{Figure \ref{fig:q4-phase}}). However, upon analysis the results got significantly worse at lower motor speeds, rendering the controller design unusable at these speeds due to high oscillatory behaviour. Therefore, further research and improvements are needed before this model type could outperform other methods presented in this report.
+\par Therefore the parameters had to be further iterated with $p_0$ not equal to zero, and it was found that values of $K_C = 0.0012$, $p_0= 0.01$, $z_0= -5.5$ improved the settling time at full speed (834 RPM) and was successfully implemented on the motor (\textit{Figure \ref{fig:q4-phase}}). The transfer function used was $G(s)= \frac{0.0012s + 0.0066}{s+0.01}$. However, upon further analysis the results deteriorated at lower motor speeds, rendering the controller unusable at these speeds due to high oscillatory behaviour. Therefore, further research and improvements would have been needed before this model type could outperform other methods presented in this report.
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.6\textwidth]{q4-phase.png}
-    \caption{DC motor circuit schematic \cite{article}}
+    \caption{The motor's response at full speed using phase lead.}
     \label{fig:q4-phase}
 \end{figure}
 \newpage
