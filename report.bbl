@@ -60,4 +60,16 @@ L.~Aloo, P.~Kihato, and S.~Kamau, ``Dc servomotor-based antenna positioning
   \url{https://eng.libretexts.org/Bookshelves/Industrial_and_Systems_Engineering/Chemical_Process_Dynamics_and_Controls_(Woolf)/12%3A_Multiple_Input_Multiple_Output_(MIMO)_Control/12.03%3A_MIMO_using_model_predictive_control},
   [Accessed 02-May-2023].
 
+\bibitem{sciencedirectLeadCompensator}
+``{L}ead {C}ompensator - an overview | {S}cience{D}irect {T}opics ---
+  sciencedirect.com,''
+  \url{https://www.sciencedirect.com/topics/engineering/lead-compensator#:~:text=Phase%2Dlead%20compensators%20can%20often,raise%20the%20lower%2Dfrequency%20gain.},
+  [Accessed 03-May-2023].
+
+\bibitem{umichControlTutorials1}
+``{C}ontrol {T}utorials for {M}{A}{T}{L}{A}{B} and {S}imulink - {E}xtras:
+  {D}esigning {L}ead and {L}ag {C}ompensators --- ctms.engin.umich.edu,''
+  \url{https://ctms.engin.umich.edu/CTMS/index.php?aux=Extras_Leadlag},
+  [Accessed 03-May-2023].
+
 \end{thebibliography}

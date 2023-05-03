@@ -1082,6 +1082,11 @@ INPUT ./q4-g4.png
 INPUT q4-g4.png
 INPUT ./q4-g4.png
 INPUT ./q4-g4.png
+INPUT ./q4-phase.png
+INPUT ./q4-phase.png
+INPUT q4-phase.png
+INPUT ./q4-phase.png
+INPUT ./q4-phase.png
 INPUT ./report.bbl
 INPUT report.bbl
 INPUT ./report.bbl
