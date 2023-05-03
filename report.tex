@@ -180,17 +180,17 @@
 \end{figure}
 \par In \textit{Figure \ref{fig:q4-pid3}}, the step response using PID control again showed improvement to the PI control output, which displayed greater overshoot and oscillated much more in the transient part of the response than the result using PID control. A peak speed of 261 RPM was reached, which was just beyond the desired 20\% overshoot limit, and the same was true of the settling time, which appeared to occur at around 1.5 s. Similarly to the results at half speed, a compromise between the optimisation of these factors was reached, with the Kp, Ki and Kd values chosen such that overshoot was limited while keeping oscillations in the steady state to a minimum, and remaining just within the settling time bounds.
 \subsection*{Model Predictive Control Integration}
-\par To further improve upon the controller design for our group task, we decided to utilise the Model Predictive Control (MPC) method in Simulink, this was obtained by installed the Model Predictive Control Toolbox in MATLAB.
-\par Model Predictive Control systems operates by using numerically minimising a cost function of a plant provided to it, to generate output predictions over a finite time horizon, continuously iterating over time \cite{Nikolaou2001}.
-\par A typical MPC system contains an input-output system to control, in this instance it’s the DC powered motor where the input is voltage \& output is torque.
+\par To further improve upon the controller design for our group task, we decided to utilise the Model Predictive Control (MPC) method in Simulink, this was obtained by installing the Model Predictive Control Toolbox in MATLAB.
+\par Model Predictive Control systems operates by using numerically minimising the cost function of a plant provided to it, to generate output predictions over a finite time horizon, continuously iterating over time \cite{Nikolaou2001}.
+\par A typical MPC system contains an input-output system to control, in this instance, the DC powered motor where the input is voltage and output is RPM.
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.6\textwidth]{q4-schematic.png}
     \caption{DC motor circuit schematic \cite{article}}
     \label{fig:q4-schematic}
 \end{figure}
-\par MPC is an improvement as it computes predicted future output values and computes a predicted future error as input for its cost-function optimizer. The optimizer will produce new inputs for the model and feed the model the input value that produces the least error. The cost-function optimizer does this by enforcing the constraints of the system (the first order equations derived from the transfer function that represents the DC motor system offline) \cite{libretexts123MIMO}.
-\par This reduces overall control effort of the system, in comparison to traditional PI/PID controllers and thus better overall responses, regarding peak time, settling time \& percentage overshoot. The parameters used in the MPC and the response parameters are summarised in \textit{Tables 1} and \textit{2}.
+\par MPC is an improvement as it computes predicted future output values and thus predicted future errors which are used as the input for its cost-function optimiser. The optimiser will produce new inputs for the model and feeds the model the input value that produces the least error. The cost-function optimiser does this by enforcing the constraints of the system (the first order equations derived from the transfer function that represent the DC motor system offline) \cite{libretexts123MIMO}.
+\par This reduces the overall control effort of the system, in comparison to traditional PI/PID controllers and thus produces better overall responses, regarding peak time, settling time and percentage overshoot. The parameters used in the MPC and the response parameters are summarised in \textit{Tables 1} and \textit{2}.
 \begin{table}[h!]
     \centering
     \begin{tabular}{| c | c | c | c |}
