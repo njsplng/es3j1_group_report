@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex report"] 1683030012 "report.aux" "report.bbl" "report" 1683030086
+["bibtex report"] 1683127186 "report.aux" "report.bbl" "report" 1683127187
   "/usr/local/texlive/2022/texmf-dist/bibtex/bst/ieeetran/IEEEtran.bst" 1440712899 57748 7c8250ecf02814ce6ddc0cdbb63df1dd ""
-  "References.bib" 1682978821 1157 be5d93fc10e6b34a4f540ca40fbba4f0 ""
-  "report.aux" 1683030086 4397 4a87c154db0f1ebe46c2aa3a3fa5d012 "pdflatex"
+  "References.bib" 1683107215 3118 56bbe8cfaa1ee09d3ea06d22eccf7d88 ""
+  "report.aux" 1683127187 6657 fee8f0c60e0b0c07446b59eed3d85794 "pdflatex"
   (generated)
   "report.bbl"
   "report.blg"
-["pdflatex"] 1683030085 "/Users/nojus/Documents/LaTeX/es3j1_group_report/report.tex" "report.pdf" "report" 1683030086
-  "/Users/nojus/Documents/LaTeX/es3j1_group_report/report.tex" 1683030085 16630 17e0072ef8440fc88c9d18bd0599122e ""
+["pdflatex"] 1683127186 "/Users/nojus/Documents/LaTeX/es3j1_group_report/report.tex" "report.pdf" "report" 1683127187
+  "/Users/nojus/Documents/LaTeX/es3j1_group_report/report.tex" 1683127184 23219 b467eb2c9f99c3ea7c7b4b1065843d44 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/tfm/jknappen/ec/tcrm1095.tfm" 1136768653 1536 02c06700a42be0f5a28664c7273f82e7 ""
@@ -133,6 +133,7 @@
   "/usr/local/texlive/2022/texmf-dist/tex/latex/base/atveryend-ltx.sty" 1636758526 2462 754d6b31b2ab5a09bb72c348ace2ec75 ""
   "/usr/local/texlive/2022/texmf-dist/tex/latex/base/ifthen.sty" 1622581934 5157 f308c7c04889e16c588e78aa42599fae ""
   "/usr/local/texlive/2022/texmf-dist/tex/latex/base/size11.clo" 1636758526 8464 74db94825c407b51399ca17d9bd38a3d ""
+  "/usr/local/texlive/2022/texmf-dist/tex/latex/capt-of/capt-of.sty" 1264379041 1311 063f8536a047a2d9cb1803321f793f37 ""
   "/usr/local/texlive/2022/texmf-dist/tex/latex/caption/caption.sty" 1647548653 54291 b8e5c600d4aa37b48a740dd2a6c26163 ""
   "/usr/local/texlive/2022/texmf-dist/tex/latex/caption/caption3.sty" 1647548653 71241 d2cd3a1c5acef9cb31f945b93c0bb6e3 ""
   "/usr/local/texlive/2022/texmf-dist/tex/latex/enumitem/enumitem.sty" 1561238569 51697 f8f08183cd2080d9d18a41432d651dfb ""
@@ -199,11 +200,18 @@
   "q3-g1.png" 1682978821 66245 cbe94d26058ce6c390f7e1d6d989cbfc ""
   "q3-g2.png" 1682978821 70201 89e6e6bed79dc1421b80b58e998d03e1 ""
   "q3-g3.png" 1682978821 77925 3c9c5447eb81dde095341e33249d8a05 ""
+  "q4-g1.png" 1683031076 20793 9ed687a0b5b47d55686d0ed2a4183581 ""
+  "q4-g2.png" 1683030999 21504 6c88e81e552774006860a8ebdc5723e6 ""
+  "q4-g3.png" 1683031074 22962 74009a9d18a389f2b63f4ad42fe68d55 ""
+  "q4-g4.png" 1683031061 23849 54e0423adc5ad581b292a410a36f4abe ""
+  "q4-pid1.png" 1683113997 62759 028aee144f24d678ccd7ce12ababad36 ""
+  "q4-pid2.png" 1683114011 67642 ed07a7dfc280ddc35046d69d0aed15b0 ""
+  "q4-pid3.png" 1683114025 69168 ddbdc25bb39d80fcd63488246a91f969 ""
   "q4-schematic.png" 1683030077 149155 556bd1742b20835a7aea059844ac46a0 ""
-  "report.aux" 1683030086 4397 4a87c154db0f1ebe46c2aa3a3fa5d012 "pdflatex"
-  "report.bbl" 1683030012 1709 600fc0991d8dc06ed478365707eb7872 "bibtex report"
+  "report.aux" 1683127187 6657 fee8f0c60e0b0c07446b59eed3d85794 "pdflatex"
+  "report.bbl" 1683127186 2689 9b1288e223db9aa14a57893b090a455c "bibtex report"
   "report.out" 0 -1 0 "pdflatex"
-  "report.tex" 1683030085 16630 17e0072ef8440fc88c9d18bd0599122e ""
+  "report.tex" 1683127184 23219 b467eb2c9f99c3ea7c7b4b1065843d44 ""
   (generated)
   "report.aux"
   "report.log"

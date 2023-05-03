@@ -41,4 +41,23 @@ I.~Virgala and M.~K. Peter~Frankovsk{\'{y}}, ``Friction effect analysis of a
   \url{http://www.ijsrp.org/research-paper-0313.php?rp=P15939}, [Accessed
   01-May-2023].
 
+\bibitem{Nikolaou2001}
+\BIBentryALTinterwordspacing
+M.~Nikolaou, ``Model predictive controllers: A critical synthesis of theory and
+  industrial needs,'' in \emph{Advances in Chemical Engineering}.\hskip 1em
+  plus 0.5em minus 0.4em\relax Elsevier, 2001, pp. 131--204. [Online].
+  Available: \url{https://doi.org/10.1016/s0065-2377(01)26003-7}
+\BIBentrySTDinterwordspacing
+
+\bibitem{article}
+L.~Aloo, P.~Kihato, and S.~Kamau, ``Dc servomotor-based antenna positioning
+  control system design using hybrid pid-lqr controller,'' \emph{European
+  International Journal of Science and Technology}, vol.~5, 04 2016.
+
+\bibitem{libretexts123MIMO}
+``12.3: {M}{I}{M}{O} using {M}odel {P}redictive {C}ontrol ---
+  eng.libretexts.org,''
+  \url{https://eng.libretexts.org/Bookshelves/Industrial_and_Systems_Engineering/Chemical_Process_Dynamics_and_Controls_(Woolf)/12%3A_Multiple_Input_Multiple_Output_(MIMO)_Control/12.03%3A_MIMO_using_model_predictive_control},
+  [Accessed 02-May-2023].
+
 \end{thebibliography}
